@@ -27,7 +27,7 @@ async function fetchProducts() {
    price.className = "card-price";
 
    image.src = product.image.url;
-   image.alt = product.alt;
+   image.alt = product.description;
    title.textContent = product.title;
    price.textContent = product.price;
 

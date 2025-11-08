@@ -1,58 +1,260 @@
-* {
+*,
+*::before,
+*::after {
  margin: 0;
  padding: 0;
  box-sizing: border-box;
 }
 
+:root {
+ --color-1: #1c1618;
+ --color-2: #4c3f3b;
+ --color-3: #39383b;
+ --color-4: rgba(134, 123, 112, 0.7);
+ --color-5: #b68877;
+ --color-6: #ee8572;
+ --color-7: #cd796a;
+ --color-8: rgba(18, 31, 41, 1);
+ --color-9: rgba(72, 69, 64, 1);
+ --color-10: rgba(126, 125, 130, 0.7);
+ --color-11: rgba(76, 65, 80, 1);
+ --color-12: rgba(36, 84, 92, 1);
+ --color-13: rgba(96, 85, 100, 0.7);
+ --bg-color: #fff;
+ --primary-btn-color: #b68877;
+}
+
 body {
  font-family: "zalando sans expanded", Arial, Helvetica, sans-serif;
- background-color: #ffffff;
+ background-color: var(--bg-color);
  color: #fff;
  display: flex;
  flex-direction: column;
  min-height: 100vh;
 }
 
+.page-container {
+ width: 90%;
+ max-width: 1200px;
+ margin: 0 auto;
+}
 
-header,
-footer {
- background-color: #97b3ae;
+.header {
+ background-color: var(--color-13);
  color: white;
- text-align: center;
- padding: 2.5rem;
+ padding: 1rem 0;
+ top: 0;
+ z-index: 10;
+}
+
+.header-content {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.nav {
+ display: flex;
+ align-items: center;
+ gap: 2rem;
+}
+
+.nav ul {
+ list-style: none;
+ display: flex;
+ gap: 1.5rem;
+ margin: 0;
+}
+
+.nav a {
+ color: white;
+ text-decoration: none;
+ font-weight: 400;
+ transition: color 0.3s ease;
+}
+
+.nav a:hover {
+ color: var(--color-11);
+}
+
+.icon-container {
+ display: flex;
+ align-items: center;
+ gap: 1rem;
+ font-size: 1.3rem;
+}
+
+.icon-container i {
+ font-size: 1.5rem;
+ color: white;
+ cursor: pointer;
+ transition: color 0.3s ease, transform 0.2s ease;
+ position: relative;
+}
+
+.icon-container i:hover {
+ color: var(--color-11);
+ transform: scale(1.1);
+}
+
+.icon-container .fa-cart-shopping::after {
+ content: "2"; /* example count */
+ position: absolute;
+ top: -11px;
+ right: -14px;
+ background: var(--color-12);
+ color: var(--bg-color);
+ font-size: 0.8rem;
+ font-weight: 200;
+ border-radius: 50%;
+ padding: 4px 8px;
+}
+
+.icon-container .fa-heart::after {
+ content: "5"; /* example count */
+ position: absolute;
+ top: -11px;
+ right: -14px;
+ background: var(--color-12);
+ color: var(--bg-color);
+ font-size: 0.8rem;
+ font-weight: 200;
+ border-radius: 50%;
+ padding: 4px 8px;
+}
+
+.logo-img img {
+ width: 40%;
+ cursor: pointer;
 }
 
 main {
  flex-grow: 1;
  max-width: 1200px;
  width: 90%;
- margin: 2rem auto;
+ margin: 0 auto;
 }
 
-#resultsContainer {
+.hero {
+ background: url("/img/nathan-dumlao-pLoMDKtl-JY-unsplash.jpg") center/cover
+  no-repeat;
+ color: white;
+ text-align: center;
+ padding: 120px 20px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin: 2rem 0;
+}
+
+.hero-text {
+ background: rgba(0, 0, 0, 0.5);
+ padding: 40px;
+ border-radius: 12px;
+}
+
+.hero-text h2 {
+ font-size: 2.5rem;
+ margin-bottom: 1rem;
+}
+
+.hero-text p {
+ font-size: 1.1rem;
+ margin-bottom: 1.5rem;
+}
+
+.hero-btn {
+ background-color: var(--color-7);
+ color: #004b50;
+ text-decoration: none;
+ padding: 12px 24px;
+ border-radius: 8px;
+ font-weight: 600;
+ transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+ background-color: var(--color-6);
+}
+
+#container {
  display: grid;
  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
- gap: 1rem;
+ gap: 2rem;
 }
 
 .card {
- background-color: #979797; 
+ background-color: #fff;
  border-radius: 10px;
- padding: 10px;
+ padding: 5px;
  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
  width: 240px;
- overflow: hidden; 
+ overflow: hidden;
+}
+
+.card,
+a {
+ text-decoration: none;
 }
 
 .card-title {
-    font-size: 1rem;
-    margin: .5rem 0;
+ font-size: 1rem;
+ margin: 0.5rem 0;
+ color: #000;
+}
+
+.card-price {
+ color: #000;
+ font-size: 0.8rem;
 }
 
 .card img {
  width: 100%;
- height: 250px; 
- object-fit: cover; 
+ height: 250px;
+ object-fit: cover;
  border-radius: 8px;
  display: block;
+}
+
+.cart-btn {
+ font-family: "zalando sans expanded", Arial, Helvetica, sans-serif;
+ background-color: var(--color-11);
+ color: white;
+ border: none;
+ padding: 0.8rem 1.025rem;
+ border-radius: 0.9rem;
+ cursor: pointer;
+ margin-top: 10px;
+ transition: background-color 0.3s ease;
+}
+
+.cart-btn:hover {
+ background-color: var(--color-13);
+}
+
+/*FOOTER CONTENT*/
+
+.footer {
+ background-color: var(--color-13);
+ color: white;
+ padding: 20px 0;
+ text-align: center;
+ margin-top: 50px;
+}
+
+.footer-content {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 10px;
+}
+
+.socials a {
+ color: var(--color-12);
+ margin: 0 10px;
+ text-decoration: none;
+}
+
+.socials a:hover {
+ color: white;
 }

@@ -26,7 +26,7 @@ async function fetchProducts() {
    image.src = product.image.url;
    image.alt = product.description;
    title.textContent = product.title;
-   price.textContent = product.price;
+   price.textContent = `$${product.price}`;
    button.textContent = "Add to cart";
    anchor.href = `product/index.html?id=${product.id}`;
 

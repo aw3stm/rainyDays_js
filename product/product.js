@@ -20,7 +20,7 @@ async function fetchProducts() {
   const title = document.createElement("h2");
   const price = document.createElement("p");
   const description = document.createElement("p");
-  const sizes = document.createElement("p");
+  const sizesContainer = document.createElement("div");
   const backButton = document.createElement("a");
 
   productDiv.className = "product-details";
@@ -28,7 +28,7 @@ async function fetchProducts() {
   title.className = "product-title";
   price.className = "product-price";
   description.className = "product-description";
-  sizes.className = "product-sizes";
+  sizesContainer.className = "product-sizes-container";
   backButton.className = "back-button";
 
   image.src = product.image.url;
@@ -36,18 +36,26 @@ async function fetchProducts() {
   title.textContent = product.title;
   price.textContent = `$${product.price}`;
   description.textContent = product.description;
-  sizes.textContent = product.sizes;
   backButton.textContent = "Back to Products";
   backButton.href = "../index.html";
+
+  product.sizes.forEach(size => {
+    const button = document.createElement("button");
+    button.textContent = size;
+    button.className = "size-button";
+    sizesContainer.appendChild(button)
+    
+  });
 
   productDiv.appendChild(image);
   productDiv.appendChild(title);
   productDiv.appendChild(price);
   productDiv.appendChild(description);
-  productDiv.appendChild(sizes);
+  productDiv.appendChild(sizesContainer);
   productDiv.appendChild(backButton);
 
   container.appendChild(productDiv);
+ 
  } catch (error) {
   console.error("Failed to fetch product", error);
   container.textContent = "Failed to load product, please try again!";
@@ -55,3 +63,4 @@ async function fetchProducts() {
 }
 
 fetchProducts();
+

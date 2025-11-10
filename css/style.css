@@ -250,7 +250,7 @@ a {
  border-radius: 4px;
  cursor: pointer;
  margin-top: 2rem;
- transition: background-color 0.3s ease;   
+ transition: background-color 0.3s ease;
 }
 
 .cart-btn:hover {
@@ -327,6 +327,70 @@ a {
  display: flex;
  gap: 1rem;
  margin-top: auto;
+}
+
+.search-container {
+ margin-top: 7.5rem;
+}
+
+#searchInput {
+ width: 70%;
+ padding: 0.75rem;
+ font-size: 1rem;
+ border: 1px solid #ddd;
+ border-radius: 4px;
+}
+
+.page-controls {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-wrap: wrap;
+ gap: 0.5rem;
+ margin-top: 2rem;
+}
+ .page-controls button {
+ padding: 0.5rem 1rem;
+ border: 1px solid #ddd;
+ background-color: blueviolet;
+ cursor: pointer;
+}
+
+.page-controls button:disabled {
+ cursor: not-allowed;
+ opacity: 0.5;
+}
+
+.pagination-controls button.active {
+ background-color: #007bff;
+ color: white;
+ border-color: #007bff;
+}
+
+.spinner {
+ border: 5px solid #f3f3f3; /* Light grey */
+ border-top: 5px solid #3498db; /* Blue */
+ border-radius: 50%;
+ width: 50px;
+ height: 50px;
+ animation: spin 1s linear infinite;
+ margin: 2rem auto; /* Centre the spinner */
+}
+
+@keyframes spin {
+ 0% {
+  transform: rotate(0deg);
+ }
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+
+.no-results {
+ text-align: center;
+ font-style: italic;
+ color: #666;
+ padding: 2rem;
 }
 
 /*FOOTER CONTENT*/

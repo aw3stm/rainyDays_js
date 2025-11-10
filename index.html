@@ -35,6 +35,21 @@
   </header>
 
   <main>
+   <div class="search-container">
+    <form id="searchForm">
+     <input type="search" id="searchInput" placeholder="Search products..." />
+    </form>
+    <div class="sort-container">
+     <label for="sortSelect">Sort by:</label>
+     <select id="sortSelect">
+      <option value="name-asc">Name (A-Z)</option>
+      <option value="name-desc">Name (Z-A)</option>
+      <option value="released-desc">Released (Newest)</option>
+      <option value="released-asc">Released (Oldest)</option>
+     </select>
+    </div>
+   </div>
+
    <section class="hero">
     <div class="hero-text">
      <h2>Explore the outdoors in style</h2>
@@ -49,7 +64,10 @@
     <h1>Latest collection</h1>
    </section>
 
-   <div id="container"></div>
+   <div id="container">
+    <p>Loading data...</p>
+   </div>
+   <div id="pageContainer" class="page-controls"></div>
   </main>
 
   <footer class="footer">

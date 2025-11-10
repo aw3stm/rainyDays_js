@@ -1,47 +1,221 @@
 const container = document.querySelector("#container");
+const searchInput = document.querySelector("#searchInput");
+const pageContainer = document.querySelector("#pageContainer");
+const sortSelect = document.querySelector("#sortSelect");
 const API_URL = "https://v2.api.noroff.dev/rainy-days";
+let products = [];
+let currentPage = 1;
+const ITEMS_PER_PAGE = 6;
 
 async function fetchProducts() {
  try {
   const response = await fetch(API_URL);
-  const data = await response.json();
-  const products = data.data;
-
-  products.forEach((product) => {
-   const card = document.createElement("div");
-   const image = document.createElement("img");
-   const content = document.createElement("div");
-   const title = document.createElement("h2");
-   const price = document.createElement("p");
-   const button = document.createElement("button");
-   const anchor = document.createElement("a");
-
-   card.className = "card";
-   image.className = "card-image";
-   content.className = "card-content";
-   title.className = "card-title";
-   price.className = "card-price";
-   button.className = "cart-btn";
-
-   image.src = product.image.url;
-   image.alt = product.description;
-   title.textContent = product.title;
-   price.textContent = `$${product.price}`;
-   button.textContent = "Add to cart";
-   anchor.href = `product/index.html?id=${product.id}`;
-
-   card.appendChild(image);
-   card.appendChild(content);
-   content.appendChild(title);
-   content.appendChild(price);
-   content.appendChild(button);
-   anchor.appendChild(card);
-
-   container.appendChild(anchor);
-  });
+  if (!response.ok) {
+   throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+  const result = await response.json();
+  products = result.data;
+  productsToRender(products);
  } catch (error) {
   console.error("Failed to fetch products:", error);
+  container.innerHTML =
+   '<p class="error-msg">Could not load products. Please try refreshing the page.</p>';
  }
 }
 
-fetchProducts();
+function productsToRender(productList) {
+ container.innerHTML = "";
+ if (productList.length === 0) {
+  container.innerHTML =
+   '<p class="no-result">No products found. Try a different search!</p>';
+  return;
+ }
+ productList.forEach((product) => {
+  const card = document.createElement("div");
+  const image = document.createElement("img");
+  const content = document.createElement("div");
+  const title = document.createElement("h2");
+  const price = document.createElement("p");
+  const button = document.createElement("button");
+  const anchor = document.createElement("a");
+
+  card.className = "card";
+  image.className = "card-image";
+  content.className = "card-content";
+  title.className = "card-title";
+  price.className = "card-price";
+  button.className = "cart-btn";
+
+  image.src = product.image.url;
+  image.alt = product.description;
+  title.textContent = product.title;
+  price.textContent = `$${product.price}`;
+  button.textContent = "Add to cart";
+  anchor.href = `product/index.html?id=${product.id}`;
+
+  card.appendChild(image);
+  card.appendChild(content);
+  content.appendChild(title);
+  content.appendChild(price);
+  content.appendChild(button);
+  anchor.appendChild(card);
+
+  container.appendChild(anchor);
+ });
+}
+
+function paginateData(items, page) {
+ const startIndex = (page - 1) * ITEMS_PER_PAGE;
+ const endIndex = startIndex + ITEMS_PER_PAGE;
+ return items.slice(startIndex, endIndex);
+}
+
+function renderPagination(items) {
+ pageContainer.innerHTML = "";
+ const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+ if (totalPages <= 1) return;
+
+ const prevButton = createPrevButton(currentPage === 1);
+ pageContainer.appendChild(prevButton);
+
+ const pageNumberContainer = document.createElement("div");
+ pageNumberContainer.classList.add("page-numbers");
+
+ for (let i = 1; i <= totalPages; i++) {
+  const pageButton = document.createElement("button");
+  pageButton.textContent = i;
+  pageButton.dataset.page = i;
+
+  if (i === currentPage) {
+   pageButton.classList.add("active");
+  }
+  pageNumberContainer.appendChild(pageButton);
+ }
+ pageNumberContainer.addEventListener("click", (event) => {
+  if (event.target.tagName === "BUTTON") {
+   const pageNumber = Number(event.target.dataset.page);
+   currentPage = pageNumber;
+   updatePage();
+  }
+ });
+ pageContainer.appendChild(pageNumberContainer);
+
+ const nextButton = createNextButton(currentPage === totalPages);
+ pageContainer.appendChild(nextButton);
+}
+
+function createPrevButton(isDisabled) {
+ const Button = document.createElement("button");
+ Button.textContent = "Previous";
+ Button.disabled = isDisabled;
+ Button.addEventListener("click", () => {
+  if (currentPage > 1) {
+   currentPage--;
+   updatePage();
+  }
+ });
+ return Button;
+}
+
+function createNextButton(isDisabled) {
+ const Button = document.createElement("button");
+ Button.textContent = "Next";
+ Button.disabled = isDisabled;
+ Button.addEventListener("click", () => {
+  currentPage++;
+  updatePage();
+ });
+ return Button;
+}
+
+function updatePage() {
+ const searchTerm = searchInput.value;
+ const filteredProducts = filterProducts(searchTerm);
+
+ const sortOption = sortSelect.value;
+ const sortedProducts = sortProducts(filteredProducts, sortOption);
+
+ const paginatedProducts = paginateData(sortedProducts, currentPage);
+
+ productsToRender(paginatedProducts);
+ renderPagination(sortedProducts);
+}
+
+function handleSearch(event) {
+ currentPage = 1;
+ updatePage();
+}
+
+function debounce(func, wait) {
+ let timeoutId;
+
+ return function (...args) {
+  const context = this;
+
+  clearTimeout(timeoutId);
+
+  timeoutId = setTimeout(() => {
+   func.apply(context, args);
+  }, wait);
+ };
+}
+
+function sortProducts(items, sortOption) {
+ const sortedItems = [...items];
+ switch (sortOption) {
+  case "name-asc":
+   sortedItems.sort((a, b) => a.title.localeCompare(b.title));
+   break;
+  case "name-desc":
+   sortedItems.sort((a, b) => b.title.localeCompare(a.title));
+   break;
+  case "description-desc":
+   sortedItems.sort((a, b) => b.description - a.description);
+   break;
+  case "description-asc":
+   sortedItems.sort((a, b) => a.description - b.description);
+   break;
+ }
+
+ return sortedItems;
+}
+
+// --- EVENT LISTENERS ---
+const debouncedSearch = debounce(handleSearch, 300);
+searchInput.addEventListener("input", debouncedSearch);
+
+function filterProducts(searchTerm) {
+ const lowerCaseSearchTerm = searchTerm.toLowerCase().trim();
+
+ if (!lowerCaseSearchTerm) {
+  return products;
+ }
+ const filtered = products.filter((product) => {
+  const nameMatch = product.title?.toLowerCase().includes(lowerCaseSearchTerm);
+  const descriptionMatch = product.description
+   ?.toLowerCase()
+   .includes(lowerCaseSearchTerm);
+  const sizeMatch = product.sizes?.some((size) =>
+   size.toLowerCase().includes(lowerCaseSearchTerm)
+  );
+
+  return nameMatch || descriptionMatch || sizeMatch;
+ });
+
+ return filtered;
+}
+
+sortSelect.addEventListener("change", () => {
+ updatePage();
+});
+
+async function startApp() {
+ pageContainer.innerHTML = '<div class= "spinner"></div>';
+ try {
+  await fetchProducts();
+  updatePage();
+ } catch (error) {
+  console.error("Startup failed:", error);
+ }
+}
+startApp();

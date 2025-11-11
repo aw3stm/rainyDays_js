@@ -5,9 +5,9 @@ const sortSelect = document.querySelector("#sortSelect");
 const API_URL = "https://v2.api.noroff.dev/rainy-days";
 let products = [];
 let currentPage = 1;
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 4;
 
-async function fetchProducts() {
+export async function fetchProducts() {
  try {
   const response = await fetch(API_URL);
   if (!response.ok) {
@@ -23,44 +23,21 @@ async function fetchProducts() {
  }
 }
 
-function productsToRender(productList) {
+import { updateCartCount } from "./cart.js";
+import { createProductCard } from "./renderProductCard.js";
+
+export function productsToRender(productList) {
  container.innerHTML = "";
+
  if (productList.length === 0) {
   container.innerHTML =
    '<p class="no-result">No products found. Try a different search!</p>';
   return;
  }
+
  productList.forEach((product) => {
-  const card = document.createElement("div");
-  const image = document.createElement("img");
-  const content = document.createElement("div");
-  const title = document.createElement("h2");
-  const price = document.createElement("p");
-  const button = document.createElement("button");
-  const anchor = document.createElement("a");
-
-  card.className = "card";
-  image.className = "card-image";
-  content.className = "card-content";
-  title.className = "card-title";
-  price.className = "card-price";
-  button.className = "cart-btn";
-
-  image.src = product.image.url;
-  image.alt = product.description;
-  title.textContent = product.title;
-  price.textContent = `$${product.price}`;
-  button.textContent = "Add to cart";
-  anchor.href = `product/index.html?id=${product.id}`;
-
-  card.appendChild(image);
-  card.appendChild(content);
-  content.appendChild(title);
-  content.appendChild(price);
-  content.appendChild(button);
-  anchor.appendChild(card);
-
-  container.appendChild(anchor);
+  const card = createProductCard(product, { showAddBtn: false });
+  container.appendChild(card);
  });
 }
 
@@ -175,6 +152,12 @@ function sortProducts(items, sortOption) {
   case "description-asc":
    sortedItems.sort((a, b) => a.description - b.description);
    break;
+  case "gender-asc":
+   sortedItems.sort((a, b) => a.gender.localeCompare(b.gender));
+   break;
+  case "gender-desc":
+   sortedItems.sort((a, b) => b.gender.localeCompare(a.gender));
+   break;
  }
 
  return sortedItems;
@@ -219,3 +202,4 @@ async function startApp() {
  }
 }
 startApp();
+updateCartCount();

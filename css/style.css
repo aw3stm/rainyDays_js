@@ -471,6 +471,33 @@ h3 {
  margin-top: 2rem;
 }
 
+/*****Local photos*****/
+.photos-local-container {
+ display: flex;
+ justify-content: center;
+ margin: 1.5rem 0 8rem 0;
+}
+
+.photos-local-h2 {
+ text-align: center;
+ margin: 8rem 0 0 0;
+}
+
+.photos-local {
+ display: flex;
+ justify-content: center;
+ flex-wrap: wrap;
+ gap: 2rem;
+ max-width: 1200px;
+}
+
+.photos-local img {
+ width: 50%;
+ max-width: 400px;
+ height: auto;
+ border-radius: 0.5rem;
+}
+
 /*FOOTER CONTENT*/
 
 .footer {

@@ -3,10 +3,13 @@ const searchInput = document.querySelector("#searchInput");
 const pageContainer = document.querySelector("#pageContainer");
 const sortSelect = document.querySelector("#sortSelect");
 const API_URL = "https://v2.api.noroff.dev/rainy-days";
+const LOCAL_PRODUCTS = "/js/localProducts.json";
 let products = [];
 let currentPage = 1;
 const ITEMS_PER_PAGE = 4;
 
+
+//Fetch API products
 export async function fetchProducts() {
  try {
   const response = await fetch(API_URL);
@@ -14,7 +17,9 @@ export async function fetchProducts() {
    throw new Error(`HTTP error! Status: ${response.status}`);
   }
   const result = await response.json();
-  products = result.data;
+  const apiProducts = result.data;
+  products = [...apiProducts];
+
   productsToRender(products);
  } catch (error) {
   console.error("Failed to fetch products:", error);
@@ -83,7 +88,7 @@ function renderPagination(items) {
 
 function createPrevButton(isDisabled) {
  const Button = document.createElement("button");
- Button.textContent = "Previous";
+ Button.innerHTML = `<i class="fa-solid fa-angle-left"></i>`;
  Button.disabled = isDisabled;
  Button.addEventListener("click", () => {
   if (currentPage > 1) {
@@ -96,7 +101,7 @@ function createPrevButton(isDisabled) {
 
 function createNextButton(isDisabled) {
  const Button = document.createElement("button");
- Button.textContent = "Next";
+ Button.innerHTML = `<i class="fa-solid fa-angle-right"></i>`;
  Button.disabled = isDisabled;
  Button.addEventListener("click", () => {
   currentPage++;
@@ -203,3 +208,5 @@ async function startApp() {
 }
 startApp();
 updateCartCount();
+
+

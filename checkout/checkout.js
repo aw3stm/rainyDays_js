@@ -54,10 +54,22 @@ function renderCart() {
   container.append(productContainer);
  });
 
+ const backButton = document.createElement("a");
+ backButton.className = "back-button";
+ backButton.innerHTML = `<i class="fa-solid fa-angle-left"></i> <span>Back to products</span>`;
+ backButton.href = "../index.html";
+
+ const buyButton = document.createElement("a");
+ buyButton.className = "buy-button";
+ buyButton.innerHTML = `<i class="fa-solid fa-bag-shopping"></i></i> <span>Buy products</span>`;
+ buyButton.href = "/confirmation/index.html";
+
  const prodTotalDiv = document.createElement("div");
  prodTotalDiv.className = "cart-total";
  prodTotalDiv.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
 
+ container.append(buyButton);
+ container.append(backButton)
  container.append(prodTotalDiv);
  updateCartCount();
 }

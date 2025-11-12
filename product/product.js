@@ -49,11 +49,12 @@ async function fetchProducts() {
 
   const backButton = document.createElement("a");
   backButton.className = "back-button";
-  backButton.textContent = "Back to Products";
+  backButton.innerHTML = `<i class="fa-solid fa-angle-left"></i> <span>Back to products</span>`;
   backButton.href = "../index.html";
+
   const addToCartBtn = document.createElement("a");
   addToCartBtn.className = "cart-btn";
-  addToCartBtn.textContent = "Add to cart";
+  addToCartBtn.innerHTML = `<i class="fa-solid fa-bag-shopping"></i> <span>Add to cart</span>`;
   addToCartBtn.href = "../checkout/index.html";
 
   let selectedSize = "";
@@ -75,15 +76,22 @@ async function fetchProducts() {
    sizesContainer.appendChild(button);
   });
 
-  addToCartBtn.addEventListener("click", () => {
+  addToCartBtn.addEventListener("click", (event) => {
+   event.preventDefault();
    if (!selectedSize) {
-    alert("Please select a size!");
+    const message = document.createElement("p");
+    message.textContent = "Please select a size!";
+    message.className = "error-message";
+    buttonsContainer.appendChild(message);
+    setTimeout(() => message.remove(), 2000);
     return;
    }
    addToCart(product, selectedSize, 1);
    updateCartCount();
-   container.textContent = `${product.title} (size ${selectedSize}) added to cart!`;
+   window.location.href = "../checkout/index.html";
   });
+
+  buttonsContainer.append(backButton, addToCartBtn);
 
   textContainer.append(
    title,
@@ -92,7 +100,6 @@ async function fetchProducts() {
    sizesContainer,
    buttonsContainer
   );
-  buttonsContainer.append(backButton, addToCartBtn);
 
   productDiv.append(image, textContainer);
   container.appendChild(productDiv);

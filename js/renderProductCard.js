@@ -1,6 +1,6 @@
 
 //Created a reusable function for different pages
-// Opportunity to choose add to cart button or not
+//Opportunity to choose add to cart button or not
 
 
 export function createProductCard(product, { showAddBtn = false } = {}) {

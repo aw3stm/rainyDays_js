@@ -8,7 +8,14 @@ function renderCart() {
 
  if (cart.length === 0) {
   container.innerHTML = `<p>Your cart is empty.</p>`;
-  return;
+ 
+const backHome = document.createElement("a");
+ backHome.className = "backHome";
+ backHome.innerHTML = `<i class="fa-solid fa-angle-left"></i> <span>Back to Start</span>`;
+ backHome.href = "../index.html";
+ container.append(backHome)
+ return;
+
  }
 
  let total = 0;

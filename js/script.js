@@ -3,11 +3,9 @@ const searchInput = document.querySelector("#searchInput");
 const pageContainer = document.querySelector("#pageContainer");
 const sortSelect = document.querySelector("#sortSelect");
 const API_URL = "https://v2.api.noroff.dev/rainy-days";
-const LOCAL_PRODUCTS = "../js/localProducts.json";
 let products = [];
 let currentPage = 1;
 const ITEMS_PER_PAGE = 4;
-
 
 //Fetch API products
 export async function fetchProducts() {
@@ -142,33 +140,32 @@ function debounce(func, wait) {
  };
 }
 
+//SORT PRODUCTS
+
 function sortProducts(items, sortOption) {
  const sortedItems = [...items];
  switch (sortOption) {
   case "name-asc":
    sortedItems.sort((a, b) => a.title.localeCompare(b.title));
    break;
-  case "name-desc":
-   sortedItems.sort((a, b) => b.title.localeCompare(a.title));
-   break;
-  case "description-desc":
-   sortedItems.sort((a, b) => b.description - a.description);
-   break;
-  case "description-asc":
-   sortedItems.sort((a, b) => a.description - b.description);
-   break;
+
   case "gender-asc":
    sortedItems.sort((a, b) => a.gender.localeCompare(b.gender));
    break;
-  case "gender-desc":
-   sortedItems.sort((a, b) => b.gender.localeCompare(a.gender));
+
+  case "price-asc":
+   sortedItems.sort((a, b) => a.price - b.price);
+   break;
+  case "price-desc":
+   sortedItems.sort((a, b) => b.price - a.price);
    break;
  }
 
  return sortedItems;
 }
 
-// --- EVENT LISTENERS ---
+// SEARCH INPUT FIELD
+
 const debouncedSearch = debounce(handleSearch, 300);
 searchInput.addEventListener("input", debouncedSearch);
 
@@ -180,14 +177,21 @@ function filterProducts(searchTerm) {
  }
  const filtered = products.filter((product) => {
   const nameMatch = product.title?.toLowerCase().includes(lowerCaseSearchTerm);
+
   const descriptionMatch = product.description
    ?.toLowerCase()
    .includes(lowerCaseSearchTerm);
-  const sizeMatch = product.sizes?.some((size) =>
-   size.toLowerCase().includes(lowerCaseSearchTerm)
-  );
 
-  return nameMatch || descriptionMatch || sizeMatch;
+  const genderMatch = product.gender
+   ?.toLowerCase()
+   .includes(lowerCaseSearchTerm);
+
+  const priceMatch = product.price
+   ?.toString()
+   .toLowerCase()
+   .includes(lowerCaseSearchTerm);
+
+  return nameMatch || genderMatch || descriptionMatch || priceMatch;
  });
 
  return filtered;
@@ -199,16 +203,13 @@ sortSelect.addEventListener("change", () => {
 
 async function startApp() {
  pageContainer.innerHTML = '<div class="spinner"></div>';
- 
+
  try {
   await fetchProducts();
   updatePage();
  } catch (error) {
   console.error("Startup failed:", error);
  }
-
 }
 startApp();
 updateCartCount();
-
-

@@ -3,7 +3,7 @@ const searchInput = document.querySelector("#searchInput");
 const pageContainer = document.querySelector("#pageContainer");
 const sortSelect = document.querySelector("#sortSelect");
 const API_URL = "https://v2.api.noroff.dev/rainy-days";
-const LOCAL_PRODUCTS = "/js/localProducts.json";
+const LOCAL_PRODUCTS = "../js/localProducts.json";
 let products = [];
 let currentPage = 1;
 const ITEMS_PER_PAGE = 4;
@@ -198,13 +198,15 @@ sortSelect.addEventListener("change", () => {
 });
 
 async function startApp() {
- pageContainer.innerHTML = '<div class= "spinner"></div>';
+ pageContainer.innerHTML = '<div class="spinner"></div>';
+ 
  try {
   await fetchProducts();
   updatePage();
  } catch (error) {
   console.error("Startup failed:", error);
  }
+
 }
 startApp();
 updateCartCount();

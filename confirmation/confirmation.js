@@ -7,7 +7,7 @@ function renderConfirmation() {
  const cart = getCart();
  // When user reloads page -> go back to start
  if (!cart || cart.length === 0) {
-  window.location.href = "/index.html";
+  window.location.href = "../index.html";
   return;
  }
 

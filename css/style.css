@@ -84,14 +84,14 @@ body {
 
 .icon-container i {
  font-size: 1.5rem;
- color: var(--color-7);
+ color: var(--color-12);
  cursor: pointer;
  transition: color 0.3s ease, transform 0.2s ease;
  position: relative;
 }
 
 .icon-container i:hover {
- color: var(--color-11);
+ color: var(--color-8);
  transform: scale(1.1);
 }
 
@@ -112,19 +112,6 @@ body {
  right: -8px;
  transition: transform 0.2s ease;
 }
-
-/* .icon-container .fa-heart::after {
- content: "2";
- position: absolute;
- top: -11px;
- right: -14px;
- background: var(--color-11);
- color: var(--bg-color);
- font-size: 0.8rem;
- font-weight: 200;
- border-radius: 50%;
- padding: 4px 8px;
-} */
 
 .logo img {
  width: 30%;
@@ -147,7 +134,7 @@ main {
  display: flex;
  align-items: center;
  justify-content: center;
- margin: 3rem 0;
+ margin: 2rem 0;
 }
 
 .hero-text {
@@ -237,7 +224,8 @@ a {
 }
 
 .cart-btn,
-.back-button {
+.back-button,
+.buy-button {
  font-family: "zalando sans expanded", Arial, Helvetica, sans-serif;
  background-color: var(--color-11);
  color: var(--bg-color);
@@ -247,10 +235,12 @@ a {
  cursor: pointer;
  margin-top: 1rem;
  transition: background-color 0.3s ease;
+ margin: 1rem 0.4rem;
 }
 
 .cart-btn:hover,
-.back-button:hover {
+.back-button:hover,
+.buy-button:hover {
  background-color: var(--color-13);
  color: #000;
 }
@@ -323,11 +313,12 @@ a {
 }
 
 .search-container {
- margin-top: 7.5rem;
+ margin-top: 6rem;
  display: flex;
  align-items: center;
  justify-content: flex-end;
  gap: 8px;
+ border-radius: .5rem;
 }
 
 #searchInput {
@@ -342,6 +333,7 @@ a {
  padding: 0.5rem;
  font-family: "zalando sans expanded", Arial, Helvetica, sans-serif;
  border-color: #f3f3f3;
+ border-radius: .5rem;
 }
 
 .page-controls {
@@ -349,8 +341,9 @@ a {
  justify-content: center;
  align-items: center;
  flex-wrap: wrap;
- gap: 0.5rem;
+ gap: 0.8rem;
  margin: 1.5rem;
+ border-bottom: 1px solid #f3f3f3;
 }
 
 .page-controls button {
@@ -360,7 +353,7 @@ a {
  cursor: pointer;
  font-family: "zalando sans expanded", Arial, Helvetica, sans-serif;
  border-radius: 2px;
- margin: 2px;
+ margin: 1rem 0.3rem 1.5rem 0;
 }
 
 .page-controls button:disabled {
@@ -398,6 +391,10 @@ a {
  font-style: italic;
  color: #666;
  padding: 2rem;
+}
+
+.checkoutBtnContainer {
+ display: flex;
 }
 
 #checkoutContainer.cart-details {
@@ -498,33 +495,164 @@ h3 {
  border-radius: 0.5rem;
 }
 
-/*FOOTER CONTENT*/
-
-.footer {
- height: 200px;
+/******CONFIRMATION*******/
+.confirmationOverlay {
+ position: fixed;
+ inset: 0;
+ background: rgba(0, 0, 0, 0.2);
+ backdrop-filter: blur(1px);
  display: flex;
- flex-direction: column;
  justify-content: center;
  align-items: center;
- background-color: var(--color-13);
- color: white;
+ z-index: 1000;
+ animation: fadeIn 0.4s ease-in-out;
 }
 
-.footer-content {
+
+#confirmationContainer {
+ margin: 10rem auto;
+ width: 800px;
+ padding: 3rem 3rem;
  display: flex;
- flex: -1;
  flex-direction: column;
  align-items: center;
  gap: 2rem;
+ background: url("/img/clement-m-igX2deuD9lc-unsplash.jpg") center/cover
+  no-repeat;
+ border-radius: 1rem;
+ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+ text-align: center;
+ animation: fadeIn 0.4s ease-in-out;
 }
 
-.socials,
-a {
+#confirmationContainer h2 {
+ font-size: 2rem;
+ font-weight: 700;
+ margin-bottom: 1rem;
+ color: #333;
+}
+
+#confirmationContainer ul {
+ list-style: none;
+ padding: 0;
+ width: 100%;
+}
+
+#confirmationContainer li {
+ display: flex;
+ align-items: center;
+ gap: 1.5rem;
+ margin: 1rem 0;
+ border-bottom: 1px solid var(--color-5);
+ padding-bottom: 1rem;
+}
+
+#confirmationContainer img {
+ width: 100px;
+ height: 100px;
+ object-fit: cover;
+ border-radius: 0.5rem;
+}
+
+.confirmationList {
+ text-align: left;
+ flex: 1;
+}
+
+.confirmationList p {
+ margin: 0.3rem 0;
+ color: #000;
+}
+
+.totalThankYou {
+ font-size: 1.4rem;
+ font-weight: 600;
+ color: var(--bg-color);
+ text-align: center;
+}
+
+.thankYouText {
+ font-size: 1.2rem;
+ color: var(--bg-color);
+ margin-top: 1rem;
+ letter-spacing: 0.3px;
+}
+
+/* Optional: subtle animation */
+@keyframes fadeIn {
+ from {
+  opacity: 0;
+  transform: translateY(10px);
+ }
+ to {
+  opacity: 1;
+  transform: translateY(0);
+ }
+}
+
+/*FOOTER CONTENT*/
+.footer {
+ display: flex;
+ flex-direction: column;
+ align-items: flex-start;
+ background-color: var(--color-8);
+ color: white;
+ align-items: center;
+ padding: 1rem 1rem;
+ gap: 1.5rem;
+}
+
+.socials {
+ display: flex;
+ gap: 1rem;
+ font-size: 1.5rem;
+}
+
+.socials a {
  color: var(--color-12);
- margin: 20px 10px;
  text-decoration: none;
+ transition: color 0.3s ease;
 }
 
 .socials a:hover {
  color: white;
+}
+
+.contactInfo {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: flex-start;
+ gap: 2rem;
+ font-size: 0.75rem;
+ margin-bottom: 2rem;
+}
+
+.contact-section {
+ min-width: 150px;
+ text-align: left;
+ display: flex;
+ flex-direction: column;
+}
+
+.contact-h3 {
+ margin-bottom: 0.5rem;
+ font-size: 0.85rem;
+ color: white;
+ justify-content: flex-start;
+}
+
+.contact-section ul {
+ list-style: none;
+ padding: 0;
+ margin: 0;
+}
+
+.contact-section ul li {
+ margin-bottom: 0.3rem;
+ color: var(--color-12);
+}
+
+.footer-content {
+ font-size: 0.8rem;
+ color: var(--bg-color);
 }

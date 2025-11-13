@@ -1,10 +1,12 @@
 import { getCart, updateCartCount } from "../js/cart.js";
 
 const confirmationContainer = document.querySelector("#confirmationContainer");
+//Use false when coding and testing. Prevents page reload.
 const IS_PRODUCTION = true;
 
 function renderConfirmation() {
  const cart = getCart();
+
  // When user reloads page -> go back to start
  if (!cart || cart.length === 0) {
   window.location.href = "../index.html";
@@ -37,8 +39,9 @@ function renderConfirmation() {
        .join("")}
     </ul>
     <h3 class="totalThankYou">Total: $${totalAmount.toFixed(2)}</h3>
+    <div class="thankYouContainer">
     <p class="thankYouText">Thank you for your purchase!</p> 
-    <p class="thankYouText">Order confirmation has been sent to your email.</p>
+    <p class="thankYouText">Order confirmation has been sent to your email.</p></div>
   `;
  if (IS_PRODUCTION) {
   localStorage.removeItem("shoppingCart");

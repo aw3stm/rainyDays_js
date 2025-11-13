@@ -65,7 +65,7 @@ function renderCart() {
  const buyButton = document.createElement("a");
  buyButton.className = "buy-button";
  buyButton.innerHTML = `<i class="fa-solid fa-bag-shopping"></i></i> <span>Place order</span>`;
- buyButton.href = "/confirmation/index.html";
+ buyButton.href = "../confirmation/index.html";
 
  const prodTotalDiv = document.createElement("div");
  prodTotalDiv.className = "cart-total";
@@ -78,6 +78,3 @@ function renderCart() {
 }
 updateCartCount();
 renderCart();
-
-
-

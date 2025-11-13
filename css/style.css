@@ -126,7 +126,7 @@ main {
 }
 
 .hero {
- background: url("/img/nathan-dumlao-pLoMDKtl-JY-unsplash.jpg") center/cover
+ background: url("../img/nathan-dumlao-pLoMDKtl-JY-unsplash.jpg") center/cover
   no-repeat;
  color: white;
  text-align: center;

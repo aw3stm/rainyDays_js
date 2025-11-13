@@ -3,45 +3,48 @@
  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RainyDays | Home</title>
+  <title>RainyDays | Thank you!</title>
   <style>
    @import url("https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap");
   </style>
   <script
    src="https://kit.fontawesome.com/d73d073248.js"
    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./css/style.css" />
-  <script src="./js/index.js" type="module"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="./confirmation.js" type="module"></script>
  </head>
  <body>
   <header class="header">
-   <div class="page-container header-content">
-    <div class="logo-img">
-     <img src="img/apple-touch-icon.png" alt="RainyDays brand logo" />
-    </div>
-    <nav class="nav">
+   <nav class="nav">
+    <a href="/index.html" class="logo">
+     <img src="../img/apple-touch-icon.png" alt="RainyDays brand logo" />
+    </a>
+    <div class="icon-container">
      <ul>
-      <li><a href="#">Women</a></li>
-      <li><a href="#">Men</a></li>
+      <li><a href="#">News</a></li>
       <li><a href="#">Sale</a></li>
      </ul>
-
-     <div class="icon-container">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <i class="fa-solid fa-heart"></i>
-     </div>
-    </nav>
-   </div>
+     <i class="fa-solid fa-heart"></i>
+     <a href="../index.html" class="cart-icon">
+      <i class="fa-solid fa-bag-shopping"></i>
+     </a>
+    </div>
+   </nav>
   </header>
+  <main>
+    <div class="confirmationOverlay">
+   <div id="confirmationContainer"></div>
+    </div>
+  </main>
 
   <footer class="footer">
-   <div class="container footer-content">
+   <div class="socials">
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">YouTube</a>
+   </div>
+   <div class="footer-content">
     <p>© 2025 RainyDays. All rights reserved.</p>
-    <div class="socials">
-     <a href="#">Instagram</a>
-     <a href="#">Facebook</a>
-     <a href="#">Twitter</a>
-    </div>
    </div>
   </footer>
  </body>

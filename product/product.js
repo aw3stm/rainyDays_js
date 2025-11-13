@@ -1,3 +1,5 @@
+import { addToCart, updateCartCount } from "../js/cart.js";
+
 const container = document.querySelector("#container");
 const API_URL = "https://v2.api.noroff.dev/rainy-days";
 
@@ -12,42 +14,47 @@ async function fetchProducts() {
   }
 
   const response = await fetch(`${API_URL}/${id}`);
-  const data = await response.json();
-  const product = data.data;
+  const result = await response.json();
+  const product = result.data;
 
   const productDiv = document.createElement("div");
-  const textContainer = document.createElement("div");
-  const buttonsContainer = document.createElement("div");
-  const image = document.createElement("img");
-  const title = document.createElement("h2");
-  const price = document.createElement("p");
-  const description = document.createElement("p");
-  const sizeOption = document.createElement("p");
-  const sizesContainer = document.createElement("div");
-  const backButton = document.createElement("a");
-  const addToCartBtn = document.createElement("a");
-
   productDiv.className = "product-details";
-  textContainer.className = "product-text";
-  buttonsContainer.className = "product-buttons";
-  image.className = "product-image";
-  title.className = "product-title";
-  price.className = "product-price";
-  description.className = "product-description";
-  sizeOption.className = "size-opt";
-  sizesContainer.className = "product-sizes-container";
-  backButton.className = "back-button";
-  addToCartBtn.className = "cart-btn";
 
+  const textContainer = document.createElement("div");
+  textContainer.className = "product-text";
+
+  const buttonsContainer = document.createElement("div");
+  buttonsContainer.className = "product-buttons";
+
+  const image = document.createElement("img");
+  image.className = "product-image";
   image.src = product.image.url;
   image.alt = product.image.alt;
+
+  const title = document.createElement("h2");
+  title.className = "product-title";
   title.textContent = product.title;
+
+  const price = document.createElement("p");
+  price.className = "product-price";
   price.textContent = `$${product.price}`;
+  const description = document.createElement("p");
+  description.className = "product-description";
   description.textContent = product.description;
+
+  const sizesContainer = document.createElement("div");
+  sizesContainer.className = "product-sizes-container";
+  const sizeOption = document.createElement("p");
   sizeOption.textContent = "Select size";
-  backButton.textContent = "Back to Products";
+
+  const backButton = document.createElement("a");
+  backButton.className = "back-button";
+  backButton.innerHTML = `<i class="fa-solid fa-angle-left"></i> <span>Back to products</span>`;
   backButton.href = "../index.html";
-  addToCartBtn.textContent = "Add to cart";
+
+  const addToCartBtn = document.createElement("a");
+  addToCartBtn.className = "cart-btn";
+  addToCartBtn.innerHTML = `<i class="fa-solid fa-bag-shopping"></i> <span>Add to cart</span>`;
   addToCartBtn.href = "../checkout/index.html";
 
   let selectedSize = "";
@@ -65,28 +72,41 @@ async function fetchProducts() {
     selectedSize = size;
     selectedButton = button;
     button.classList.add("selected");
-
-    console.log("Selected size:", selectedSize);
    });
    sizesContainer.appendChild(button);
   });
 
-  textContainer.appendChild(title);
-  textContainer.appendChild(price);
-  textContainer.appendChild(description);
-  textContainer.appendChild(sizeOption);
-  textContainer.appendChild(sizesContainer);
-  buttonsContainer.appendChild(backButton);
-  buttonsContainer.appendChild(addToCartBtn);
+  addToCartBtn.addEventListener("click", (event) => {
+   event.preventDefault();
+   if (!selectedSize) {
+    const message = document.createElement("p");
+    message.textContent = "Please select a size!";
+    message.className = "error-message";
+    buttonsContainer.appendChild(message);
+    setTimeout(() => message.remove(), 2000);
+    return;
+   }
+   addToCart(product, selectedSize, 1);
+   updateCartCount();
+   window.location.href = "../checkout/index.html";
+  });
 
-  productDiv.appendChild(image);
-  productDiv.appendChild(textContainer);
-  textContainer.appendChild(buttonsContainer);
+  buttonsContainer.append(backButton, addToCartBtn);
+
+  textContainer.append(
+   title,
+   description,
+   sizeOption,
+   sizesContainer,
+   buttonsContainer
+  );
+
+  productDiv.append(image, textContainer);
   container.appendChild(productDiv);
  } catch (error) {
   console.error("Failed to fetch product", error);
   container.textContent = "Failed to load product, please try again!";
  }
 }
-
+updateCartCount();
 fetchProducts();

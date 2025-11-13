@@ -1,6 +1,4 @@
 # rainyDays_js
-JavaScript 1 - Course Assignment
-
 
  ***JS1 Course Assignment***
 
@@ -30,7 +28,8 @@ The following pages are not required to complete this assignment but help to imp
 
 - Category Pages (e.g. Male/Female Clothing, Movie Genres)
 - Terms and Conditions page (this may be AI generated)
-- Privacy Policy (this may be AI generated) - My Profile
+- Privacy Policy (this may be AI generated) 
+- My Profile
 
 \***\*Process\*\***
 

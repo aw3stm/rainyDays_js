@@ -5,8 +5,8 @@
   "title": "Rainy Days David Jacket",
   "price": 129.99,
   "description": "Durable and wind-resistant, this bright blue rain jacket is built for active days outdoors. Its adjustable hood and sealed seams offer full protection from the elements while maintaining a sporty look.",
-  "gender": "Male",
   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+  "gender": "Men",
   "image": {
    "url": "../img/prod_img/blue-jacket (3).jpg",
    "alt": "A men's blue rain jacket with an adjustable hood"
@@ -19,7 +19,7 @@
   "title": "Rainy Days Bob Jacket",
   "price": 129,
   "description": "A lightweight, breathable rain jacket made to handle tough conditions. The minimalist grey design combines function and fashion, keeping you dry without compromising on style.",
-  "gender": "Male",
+  "gender": "Men",
   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
   "image": {
    "url": "../img/prod_img/men-light-grey-jacket.jpg",
@@ -33,7 +33,7 @@
   "title": "Rainy Days Bella Jacket",
   "price": 149,
   "description": "A bold and stylish waterproof jacket designed for comfort and movement. Features a sleek purple exterior with a bright inner lining for visibility and flair. Perfect for outdoor adventures in any weather.",
-  "gender": "Female",
+  "gender": "Women",
   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
   "image": {
    "url": "../img/prod_img/purple-orange-jacket.jpg",

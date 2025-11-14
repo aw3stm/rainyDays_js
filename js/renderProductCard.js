@@ -1,7 +1,5 @@
-
 //Created a reusable function for different pages
 //Opportunity to choose add to cart button or not
-
 
 export function createProductCard(product, { showAddBtn = false } = {}) {
  const card = document.createElement("div");
@@ -15,9 +13,14 @@ export function createProductCard(product, { showAddBtn = false } = {}) {
  const content = document.createElement("div");
  content.className = "card-content";
 
+ const titleLink = document.createElement("a");
+ titleLink.href = `product/index.html?id=${product.id}`;
+
  const title = document.createElement("h2");
  title.textContent = product.title;
  title.className = "card-title";
+
+ titleLink.appendChild(title);
 
  const price = document.createElement("p");
  price.textContent = `$${product.price}`;
@@ -37,14 +40,14 @@ export function createProductCard(product, { showAddBtn = false } = {}) {
   button.className = "cart-btn";
   button.addEventListener("click", (event) => {
    event.preventDefault();
-   addToCart(product, size , 1);
-   alert(`Added ${product.title} to cart!`);
+   addToCart(product, size, 1);
+//    alert(`Added ${product.title} to cart!`);
   });
   content.appendChild(button);
  }
 
- content.append(price, title, gender);
+ content.append(price, titleLink, gender);
  card.append(image, content);
 
- return anchor;
+ return card;
 }

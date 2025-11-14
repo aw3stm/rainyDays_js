@@ -1,5 +1,4 @@
 const newsContainer = document.querySelector("#newsContainer");
-let products = [];
 
 import { updateCartCount } from "../js/cart.js";
 import { createProductCard } from "../js/renderProductCard.js";
@@ -20,7 +19,7 @@ async function fetchLocalProducts() {
   updateCartCount();
  } catch (error) {
   console.error("Failed to fetch products:", error);
- newsContainer.innerHTML =
+  newsContainer.innerHTML =
    '<p class="error-msg">Could not load products. Please try refreshing the page.</p>';
  }
 }
@@ -28,14 +27,26 @@ async function fetchLocalProducts() {
 function productsToRender(productList) {
  newsContainer.innerHTML = "";
 
- if (productList.length === 0) {
-  newsContainer.innerHTML =
-   '<p class="no-result">No products found. Try a different search!</p>';
-  return;
- }
-
  productList.forEach((product) => {
-  const card = createProductCard(product, { showAddBtn: false });
+  const card = createProductCard(product, { showAddBtn: true });
+
+  const titleLink = card.querySelector(".card-title").parentElement;
+  titleLink.href = `../index.html?id=${product.id}`;
+
+  const sizeInfo = document.createElement("p");
+  sizeInfo.textContent = `Sizes: ${product.sizes?.join(" ")}`;
+  sizeInfo.className = "card-size";
+
+  const content = card.querySelector(".card-content");
+  if (content) {
+   content.appendChild(sizeInfo);
+  }
+  const addBtn = card.querySelector(".cart-btn");
+  if (addBtn) {
+   addBtn.addEventListener("click", () => {
+    window.location.href = `../product/index.html?id=${product.id}`;
+   });
+  }
   newsContainer.appendChild(card);
  });
 }

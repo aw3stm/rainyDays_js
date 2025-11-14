@@ -22,9 +22,8 @@
     <div class="icon-container">
      <ul>
       <li><a href="../news/index.html">News</a></li>
-      <li><a href="#">Sale</a></li>
      </ul>
-     <i class="fa-solid fa-heart"></i>
+
      <a href="index.html" class="cart-icon">
       <i class="fa-solid fa-bag-shopping"></i>
       <span class="cart-count"></span>
@@ -33,7 +32,48 @@
    </nav>
   </header>
   <main>
-   <div id="checkoutContainer" class="cart-details"></div>
+   <div class="checkout-wrapper">
+    <div class="right-column">
+     <div id="checkoutContainer" class="cart-details"></div>
+    </div>
+
+    <div class="left-column">
+     <form class="checkout-form">
+      <h2>Contact information</h2>
+      <label>
+       Full name
+       <input type="text" required />
+      </label>
+
+      <label>
+       Email
+       <input type="email" placeholder="example@gmail.com" required />
+      </label>
+
+      <label>
+       Phone
+       <input type="tel" required />
+      </label>
+
+      <h2>Payment details</h2>
+      <label>
+       Card number
+       <input type="text" required />
+      </label>
+
+      <label>
+       Expiration
+       <input type="text" placeholder="MM/YY" required />
+      </label>
+
+      <label>
+       CVC
+       <input type="text" required />
+      </label>
+     </form>
+    </div>
+   </div>
+   <div class="checkout-form-bottom"></div>
   </main>
 
   <footer class="footer">

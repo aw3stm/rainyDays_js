@@ -38,6 +38,7 @@ async function fetchProducts() {
   const price = document.createElement("p");
   price.className = "product-price";
   price.textContent = `$${product.price}`;
+
   const description = document.createElement("p");
   description.className = "product-description";
   description.textContent = product.description;
@@ -46,6 +47,7 @@ async function fetchProducts() {
   sizesContainer.className = "product-sizes-container";
   const sizeOption = document.createElement("p");
   sizeOption.textContent = "Select size";
+  sizeOption.className = "sizeTitle";
 
   const backButton = document.createElement("a");
   backButton.className = "back-button";
@@ -82,7 +84,7 @@ async function fetchProducts() {
     const message = document.createElement("p");
     message.textContent = "Please select a size!";
     message.className = "error-message";
-    buttonsContainer.appendChild(message);
+    addToCartBtn.parentElement.appendChild(message);
     setTimeout(() => message.remove(), 2000);
     return;
    }
@@ -95,6 +97,7 @@ async function fetchProducts() {
 
   textContainer.append(
    title,
+   price,
    description,
    sizeOption,
    sizesContainer,

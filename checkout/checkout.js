@@ -1,21 +1,22 @@
 import { getCart, saveCart, updateCartCount } from "../js/cart.js";
 
 const container = document.querySelector(".cart-details");
+const formText = document.querySelector(".checkout-form-bottom");
 
 function renderCart() {
  const cart = getCart();
  container.innerHTML = "";
+ formText.innerHTML = "";
 
  if (cart.length === 0) {
   container.innerHTML = `<p>Your cart is empty.</p>`;
- 
-const backHome = document.createElement("a");
- backHome.className = "backHome";
- backHome.innerHTML = `<i class="fa-solid fa-angle-left"></i> <span>Back to Start</span>`;
- backHome.href = "../index.html";
- container.append(backHome)
- return;
 
+  const backHome = document.createElement("a");
+  backHome.className = "backHome";
+  backHome.innerHTML = `<i class="fa-solid fa-angle-left"></i> <span>Back to Start</span>`;
+  backHome.href = "../index.html";
+  container.append(backHome);
+  return;
  }
 
  let total = 0;
@@ -53,21 +54,26 @@ const backHome = document.createElement("a");
    renderCart();
    updateCartCount();
   });
+  const backButton = document.createElement("a");
+  backButton.className = "back-button";
+  backButton.innerHTML = `<i class="fa-solid fa-angle-left"></i> <span>Continue shopping</span>`;
+  backButton.href = "../index.html";
 
   total += item.price * item.quantity;
 
-  prodInfo.append(prodTitle, prodSize, prodPrice, prodQuantity, removeBtn);
+  prodInfo.append(
+   prodTitle,
+   prodSize,
+   prodPrice,
+   prodQuantity,
+   removeBtn,
+   backButton
+  );
   productContainer.append(prodImg, prodInfo);
+
   container.append(productContainer);
  });
-
- const checkoutBtnContainer = document.createElement("div");
- checkoutBtnContainer.className = "checkoutBtnContainer";
-
- const backButton = document.createElement("a");
- backButton.className = "back-button";
- backButton.innerHTML = `<i class="fa-solid fa-angle-left"></i> <span>Continue shopping</span>`;
- backButton.href = "../index.html";
+const checkoutWrapper = document.querySelector('.checkout-wrapper')
 
  const buyButton = document.createElement("a");
  buyButton.className = "buy-button";
@@ -78,9 +84,16 @@ const backHome = document.createElement("a");
  prodTotalDiv.className = "cart-total";
  prodTotalDiv.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
 
- checkoutBtnContainer.append(backButton, buyButton);
- container.append(checkoutBtnContainer);
- container.append(prodTotalDiv);
+checkoutWrapper.insertAdjacentElement("afterend", prodTotalDiv);
+checkoutWrapper.insertAdjacentElement("afterend", buyButton);
+
+const orderDone = document.createElement("div");
+orderDone.className = "order-done";
+
+orderDone.append(prodTotalDiv, buyButton)
+
+checkoutWrapper.insertAdjacentElement("afterend", orderDone);
+
  updateCartCount();
 }
 updateCartCount();

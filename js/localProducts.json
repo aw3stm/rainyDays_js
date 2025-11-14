@@ -5,7 +5,7 @@
   "title": "Rainy Days David Jacket",
   "price": 129.99,
   "description": "Durable and wind-resistant, this bright blue rain jacket is built for active days outdoors. Its adjustable hood and sealed seams offer full protection from the elements while maintaining a sporty look.",
-  "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+  "sizes": ["S", "M", "L", "XL", "XXL"],
   "gender": "Men",
   "image": {
    "url": "../img/prod_img/blue-jacket (3).jpg",
@@ -20,7 +20,7 @@
   "price": 129,
   "description": "A lightweight, breathable rain jacket made to handle tough conditions. The minimalist grey design combines function and fashion, keeping you dry without compromising on style.",
   "gender": "Men",
-  "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+  "sizes": ["S", "M", "L", "XL", "XXL"],
   "image": {
    "url": "../img/prod_img/men-light-grey-jacket.jpg",
    "alt": "A lightweight, breathable rain jacket"

@@ -33,29 +33,26 @@
   </header>
   <main>
    <div class="checkout-wrapper">
-    <div class="right-column">
+    <div class="left-column">
      <div id="checkoutContainer" class="cart-details"></div>
     </div>
 
-    <div class="left-column">
+    <div class="right-column">
      <form class="checkout-form">
       <h2>Contact information</h2>
-      <label>
-       Full name
-       <input type="text" required />
-      </label>
-
-      <label>
-       Email
-       <input type="email" placeholder="example@gmail.com" required />
-      </label>
-
-      <label>
-       Phone
-       <input type="tel" required />
-      </label>
+      <input type="text" placeholder="Full Name" />
+      <input type="email" placeholder="Email Address" required />
+      <input type="text" placeholder="Street Address" />
+      <input type="text" placeholder="City" />
+      <input type="text" placeholder="Postal Code" />
+      <input type="text" placeholder="Country" />
 
       <h2>Payment details</h2>
+      <div class="payment-icons">
+        <i class="fa-brands fa-cc-visa"></i>
+        <i class="fa-brands fa-cc-amex"></i>
+        <i class="fa-brands fa-apple-pay"></i>
+      </div>
       <label>
        Card number
        <input type="text" required />

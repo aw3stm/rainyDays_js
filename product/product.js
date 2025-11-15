@@ -84,7 +84,7 @@ async function fetchProducts() {
     const message = document.createElement("p");
     message.textContent = "Please select a size!";
     message.className = "error-message";
-    addToCartBtn.parentElement.appendChild(message);
+    addToCartBtn.parentElement.append(message);
     setTimeout(() => message.remove(), 2000);
     return;
    }

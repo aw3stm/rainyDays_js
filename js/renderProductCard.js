@@ -41,7 +41,7 @@ export function createProductCard(product, { showAddBtn = false } = {}) {
   button.addEventListener("click", (event) => {
    event.preventDefault();
    addToCart(product, size, 1);
-//    alert(`Added ${product.title} to cart!`);
+
   });
   content.appendChild(button);
  }

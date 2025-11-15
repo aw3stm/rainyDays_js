@@ -267,9 +267,9 @@ a {
 }
 
 .error-message {
-    position: absolute;
-  
-right: 25%;
+ position: absolute;
+
+ right: 25%;
 }
 
 /*************PRODUCT DETAILS************/
@@ -440,18 +440,23 @@ right: 25%;
  display: flex;
  align-items: center;
  justify-content: space-between;
- gap: 30px;
- max-width: 800px;
+ gap: 50px;
+ max-width: 1000px;
  margin: 0 auto;
  padding: 40px 20px;
  margin-top: 10rem;
 }
 
 .left-column {
- flex: 0.8;
- background: var(--color-10);
+ width: 50%;
+ background: var(--bg-color);
  padding: 2rem;
  border-radius: 2rem;
+ border: 1px solid #f3f3f3;
+}
+
+.right-column {
+ width: 50%;
 }
 
 .checkout-form {
@@ -469,14 +474,18 @@ right: 25%;
 .checkout-form input {
  padding: 10px;
  border: 1px solid #ccc;
- border-radius: 8px;
+ border-radius: 5px;
 }
 
 .order-done {
  display: flex;
- justify-content: flex-end;
+ flex-direction: column;
+ justify-content: center;
  align-items: center;
  gap: 1rem;
+ border: 1px solid #f3f3f3;
+ border-radius: 2rem;
+ padding: 2rem;
 }
 
 .cart-img {
@@ -533,11 +542,11 @@ right: 25%;
 
 .buy-button {
  font-family: "zalando sans expanded", Arial, Helvetica, sans-serif;
- background-color: var(--color-11);
+ background-color: var(--color-12);
  color: var(--bg-color);
  border: none;
- padding: 0.8rem 1.025rem;
- border-radius: 2px;
+ padding: 0.9rem 1.025rem;
+ border-radius: 6px;
  cursor: pointer;
  margin-top: 1rem;
  transition: background-color 0.3s ease;

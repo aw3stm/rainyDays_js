@@ -41,6 +41,48 @@
   },
   "tags": ["jacket", "men"],
   "favorite": true
+ },
+ {
+  "id": "Rainy-4",
+  "title": "Rainy Days Kiara Jacket",
+  "price": 179,
+  "description": "A lightweight, breathable rain jacket made to handle tough conditions. The minimalist grey design combines function and fashion, keeping you dry without compromising on style.",
+  "gender": "Women",
+  "sizes": ["XS","S", "M", "L", "XL", "XXL"],
+  "image": {
+   "url": "../img/prod_img/woman-pink-jacket.jpg",
+   "alt": "A lightweight, breathable rain jacket"
+  },
+  "tags": ["jacket", "women"],
+  "favorite": true
+ },
+  {
+  "id": "Rainy-5",
+  "title": "Rainy Days Miranda Jacket",
+  "price": 159,
+  "description": "A lightweight, breathable rain jacket made to handle tough conditions. The minimalist grey design combines function and fashion, keeping you dry without compromising on style.",
+  "gender": "Women",
+  "sizes": ["XS","S", "M", "L", "XL", "XXL"],
+  "image": {
+   "url": "../img/prod_img/woman-beige-long-jacket.jpg",
+   "alt": "A lightweight, breathable rain jacket"
+  },
+  "tags": ["jacket", "women"],
+  "favorite": true
+ },
+   {
+  "id": "Rainy-6",
+  "title": "Rainy Days Kim Jacket",
+  "price": 159,
+  "description": "A lightweight, breathable rain jacket made to handle tough conditions. The minimalist grey design combines function and fashion, keeping you dry without compromising on style.",
+  "gender": "Unisex",
+  "sizes": ["XS","S", "M", "L", "XL", "XXL"],
+  "image": {
+   "url": "../img/prod_img/yellow-jacket-closeup.jpg",
+   "alt": "A lightweight, breathable rain jacket"
+  },
+  "tags": ["jacket", "unisex"],
+  "favorite": true
  }
 ]
 }

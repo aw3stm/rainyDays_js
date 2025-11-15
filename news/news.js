@@ -28,7 +28,7 @@ function productsToRender(productList) {
  newsContainer.innerHTML = "";
 
  productList.forEach((product) => {
-  const card = createProductCard(product, { showAddBtn: true });
+  const card = createProductCard(product, { showAddBtn: false });
 
   const titleLink = card.querySelector(".card-title").parentElement;
   titleLink.href = `../index.html?id=${product.id}`;

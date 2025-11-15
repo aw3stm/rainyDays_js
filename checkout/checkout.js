@@ -1,10 +1,12 @@
 import { getCart, saveCart, updateCartCount } from "../js/cart.js";
 
+
 const container = document.querySelector(".cart-details");
 const formText = document.querySelector(".checkout-form-bottom");
 
 function renderCart() {
  const cart = getCart();
+ const checkoutWrapper = document.querySelector('.checkout-wrapper')
  container.innerHTML = "";
  formText.innerHTML = "";
 
@@ -16,8 +18,12 @@ function renderCart() {
   backHome.innerHTML = `<i class="fa-solid fa-angle-left"></i> <span>Back to Start</span>`;
   backHome.href = "../index.html";
   container.append(backHome);
+
+  checkoutWrapper.style.display = "none";
   return;
  }
+
+ checkoutWrapper.style.display = "flex";
 
  let total = 0;
 
@@ -73,7 +79,7 @@ function renderCart() {
 
   container.append(productContainer);
  });
-const checkoutWrapper = document.querySelector('.checkout-wrapper')
+
 
  const buyButton = document.createElement("a");
  buyButton.className = "buy-button";

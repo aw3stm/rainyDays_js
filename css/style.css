@@ -87,7 +87,9 @@ body {
  font-size: 1.5rem;
  color: var(--color-12);
  cursor: pointer;
- transition: color 0.3s ease, transform 0.2s ease;
+ transition:
+  color 0.3s ease,
+  transform 0.2s ease;
  position: relative;
 }
 
@@ -199,7 +201,8 @@ main {
  border-radius: 10px;
  padding: 24px;
  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
- width: 250px;
+ width: 100%;
+ max-width: 750px;
  overflow: hidden;
 }
 
@@ -221,7 +224,9 @@ a {
  margin: 0.5rem 0;
  color: #000;
  display: inline-block;
- transition: transform 0.3s ease, color 0.3s ease;
+ transition:
+  transform 0.3s ease,
+  color 0.3s ease;
 }
 
 .card-title:hover {
@@ -238,7 +243,7 @@ a {
 
 .card img {
  width: 100%;
- height: 250px;
+ height: auto;
  object-fit: cover;
  border-radius: 8px;
  display: block;
@@ -637,7 +642,7 @@ h3 {
  left: 50%;
  transform: translate(-50%, -50%);
  color: var(--bg-color);
- font-size: 2.5rem;
+ font-size: 1.125rem;
  font-weight: bolder;
  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
@@ -747,24 +752,25 @@ h3 {
 
 .card-size {
  color: #000;
- font-size: 0.8rem;
+ font-size: 1rem;
  margin-top: 1rem;
 }
 
 #newsContainer .card {
- width: 350px;
+ width: 100%;
+ max-width: 800px;
 }
 
 .news-h1 {
  margin-top: 12rem;
- font-size: 24px;
+ font-size: 32px;
  text-align: start;
  margin-bottom: 2rem;
  font-weight: 600;
 }
 
 .news-h2 {
- font-size: 1.1rem;
+ font-size: 24px;
  font-weight: 300;
 }
 
@@ -815,7 +821,9 @@ h3 {
  position: relative;
  z-index: 2;
  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
- transition: transform 0.5s cubic-bezier(0.3, 0.6, 0.3, 1), box-shadow 0.5s ease,
+ transition:
+  transform 0.5s cubic-bezier(0.3, 0.6, 0.3, 1),
+  box-shadow 0.5s ease,
   filter 0.4s ease;
 }
 
@@ -878,7 +886,16 @@ h3 {
  }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
+ #container {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+ }
+
+ .card {
+  width: 100%;
+ }
  .news-content {
   flex-direction: column;
  }
@@ -891,6 +908,43 @@ h3 {
   transform: none;
   margin-bottom: 1.5rem;
  }
+}
+
+.product-sizes-container {
+ flex-wrap: wrap;
+}
+.product-buttons {
+ flex-wrap: wrap;
+ width: 100%;
+ max-width: fit-content;
+ margin: 0 auto;
+}
+
+.style-img {
+ position: relative;
+ display: block;
+ width: 100%;
+ max-width: 800px;
+ z-index: 1;
+ margin: 5rem auto 0 auto;
+}
+
+.style-img img {
+ display: block;
+ width: 100%;
+ border-radius: 0.4rem;
+ margin-bottom: 1.5rem;
+}
+
+.text-overlay {
+ position: absolute;
+ top: 25%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ color: var(--bg-color);
+ font-size: 2rem;
+ font-weight: bolder;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 /*FOOTER CONTENT*/
@@ -924,7 +978,7 @@ h3 {
 .contactInfo {
  display: flex;
  flex-wrap: wrap;
- justify-content: flex-start;
+ justify-content: center;
  gap: 2rem;
  font-size: 0.75rem;
  margin-bottom: 2rem;

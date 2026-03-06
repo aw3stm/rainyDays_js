@@ -1,6 +1,7 @@
 # Rainy Days - E-commerce Concept v.2 with JavaScript
 
-![image](https://github.com/aw3stm/rainyDays_js/blob/main/img/RainyDays_JS.png?raw=true)
+<p align="center"><img src="https://github.com/aw3stm/rainyDays_js/blob/main/img/RainyDays_JS.png?raw=true" width="450px">
+  </p>
 
 [Live Link to projekt](https://aw3stm.github.io/rainyDays_js/)
 
@@ -9,7 +10,7 @@
 This project was part of the JavaScript 1 course at Noroff. 
 Using my new skills writing JavaScript, create an interactive online store to display product from an API endpoint. Use one of the three provided API URLs to display products in HTML and allow users to create a basket of items. 
 
-Key Objectives:
+**Key Objectives:**
 
 - Dynamic Data Fetching: Integrating a REST API to fetch product data instead of hardcoding content in HTML.
 
@@ -21,7 +22,7 @@ Key Objectives:
 
 - Asynchronous Programming: Utilizing fetch, async/await, and error handling to ensure a smooth user experience during data loading.
 
-User Stories
+**User Stories**
 
 - As a user, I want to view a list of products on the homepage.
 - As a user, I want to filter products by category, gender or genre.
@@ -31,7 +32,7 @@ User Stories
 - As a user, I want to view a summary of my cart on the checkout page.
 - As a user, I want to view an order-confirmation screen after checking out.
 
-Required Pages
+**Required Pages**
 
 - Home Page containing product list `/index.html`
 - Product Page showing all details of a specific product `/product/index.html`
@@ -40,11 +41,10 @@ Required Pages
 
 ## Built With
 
-You can list a the tech stack that you've used over here
-
-- [HTML]
-- [CSS]
-- [Vanilla JavaScript]
+- Figma
+- HTML
+- CSS
+- Vanilla JavaScript
 
 ## Getting Started
 
